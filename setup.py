@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(name='vidium',
       version='0.1',
-      description='Vidium',
+      description='Store and organize video links.',
       author='Raymond Tang',
       author_email='raymond@tang.me',
       url='http://www.http://vidium-raytray.rhcloud.com/',
