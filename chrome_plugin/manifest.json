@@ -24,8 +24,8 @@
         "contextMenus",
         "identity",
         "tabs",
-        "https://*.dropbox.com/"
-            
+        "https://*.dropbox.com/",
+        "*://vidium-raytray.rhcloud.com/*"
         ],
     "content_security_policy": "script-src 'self' https://*.dropbox.com; object-src 'self'",
     "browser_action": {
