@@ -101,6 +101,7 @@ def store(token, url, tags):
                 video['tags'] = tags
                 return coll.save(old_item)
 
+        video = pafy.Pafy(url)
         old_item['vids'].append({'url': url,
                               'tags': tags,
                               'title': video.title,
