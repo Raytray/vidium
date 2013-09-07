@@ -5,11 +5,27 @@
 
 // The onClicked callback function.
 
+document.addEventListener('DOMContentLoaded', function(){
+    chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
+        var tok = token;
+    });
+});
+
 function onClickHandler(info, tab) {
 	var myURL="";
 	chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
 		myURL=tabs[0].url;
-		alert(myURL);
+		chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
+			var tok = JSON.stringify(token);
+			console.log(tok);
+			var getURL = "http://vidium-raytray.rhcloud.com/api/store/?token="+tok+"&url="+myURL;
+			alert(getURL);
+			var xmlHttp = null;
+			xmlHttp = new XMLHttpRequest();
+			xmlHttp.open( "GET", getURL, false );
+			xmlHttp.send( null );
+			
+		});
 	});
 	
 };
@@ -24,7 +40,7 @@ chrome.runtime.onInstalled.addListener(function() {
     var context = contexts[i];
     var title = "Vidium";
     var id = chrome.contextMenus.create({"title": title, "contexts":[context],
-                                         "id": "context" + context, "documentUrlPatterns":["*://www.youtube.com/*", "*://vimeo.com/*"]
+                                         "id": "context" + context, "documentUrlPatterns":["*://www.youtube.com/*"]
 										 });
     console.log("'" + context + "' item:" + id);
   }
