@@ -1,9 +1,14 @@
 import datastore
 
 from collections import defaultdict
-from flask import Flask, request
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
+
+@app.route('/api/retrieve/')
+def api_retrieve():
+    return jsonify({'vids': datastore.retrieve()})
+
 
 @app.route('/api/store/')
 def api_store():
@@ -15,8 +20,7 @@ def api_store():
     tags.sort()
     result = datastore.store(url, tags)
     if result:
-        return "yay"
-        #return "Successful url insert of {} with tags {}".format(url, tags)
+        return "Thanks!"
     else:
         return "Something went wrong."
 
