@@ -10,12 +10,21 @@ document.addEventListener('DOMContentLoaded', function(){
 
         xmlHttp.onreadystatechange = function (readyStateEvent) {
             var res = JSON.parse(xmlHttp.responseText);
-            document.getElementById("result_box").innerHTML='<table>';
 
-            for(var i=0; i<res.vids.length; i++){
-                document.getElementById("result_box").innerHTML+='<tr><td><a href="' + res.vids[i].url + '"><img src="' + res.vids[i].thumb_url + '" width="320"></a></td></tr>';
+
+            if(res.vids == "User not found"){
+                document.getElementById("result_box").innerHTML = "ADD SOME LINKS!";
             }
-            document.getElementById("result_box").innerHTML+='</table>';
+            else{
+                console.log(JSON.stringify(res));
+                console.log(res.vids.length);
+                document.getElementById("result_box").innerHTML='<table>';
+
+                for(var i=0; i<res.vids.length; i++){ target="_blank"
+                    document.getElementById("result_box").innerHTML+='<tr><td><a href="' + res.vids[i].url + '" target="_blank"><img src="' + res.vids[i].thumb_url + '" width="300"></a></td></tr>';
+                }
+                document.getElementById("result_box").innerHTML+='</table>';
+            }
         }
         xmlHttp.open( "GET", getURL, true );
         xmlHttp.send( null );

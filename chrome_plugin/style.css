@@ -46,7 +46,7 @@ html, body {
   height: 600px;
   width: 320px;
   background-color: white;
-  overflow: hidden;
+  overflow: scroll;
   font-family: "proximanova-regular-webfont-webfont";
   font-size: 12px;
   position: relative;
