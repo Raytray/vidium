@@ -24,7 +24,8 @@ chrome.runtime.onInstalled.addListener(function() {
     var context = contexts[i];
     var title = "Vidium";
     var id = chrome.contextMenus.create({"title": title, "contexts":[context],
-                                         "id": "context" + context});
+                                         "id": "context" + context, "documentUrlPatterns":["*://www.youtube.com/*", "*://vimeo.com/*"]
+										 });
     console.log("'" + context + "' item:" + id);
   }
   
