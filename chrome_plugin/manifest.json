@@ -8,6 +8,12 @@
     "description": "A plugin that saves and organizes links to videos.",
     "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCRrE1R0pxU31PkZvuSksNRBG8/4xsPkWwNuQ91oRWx0eh7Qul1PeGH8yKpkL4evJ10ir1H69p1hYznep6+f7sPX2evg1i4vtk5iSeI1Jzj8IbwVoC5joeNbhogffsBnCai9UiyZ7F0R31IV0G1Ws9s3Oq/xaxEsCBoPO7xNQIQFQIDAQAB",
 
+    "oauth2": {
+        "client_id": "164974719380.apps.googleusercontent.com",
+        ""scopes": [
+            "profile"
+        ]
+    }
     "icons": {"128":"assets/vidium_icon128.png", "16":"assets/vidium_icon16.png"},
 
     "background": {
