@@ -1,6 +1,8 @@
 import pymongo
 import os
 
+from collections import defaultdict
+
 host = os.environ.get('OPENSHIFT_MONGODB_DB_HOST')
 port = os.environ.get('OPENSHIFT_MONGODB_DB_PORT')
 
@@ -12,6 +14,8 @@ from pymongo import MongoClient, ASCENDING
 
 
 def get_mongo_collection():
+    """Inits and returns global the_connection if not
+    initialized with default collection."""
     if not the_collection:
         global the_collection
 
@@ -31,18 +35,26 @@ def get_mongo_collection():
     return the_collection
 
 
-def retrieve():
+def retrieve(tags=None):
+    """Get all stored videos with tags"""
     coll = get_mongo_collection()
 
-    return_list = []
+    results_dict = defaultdict(list)
 
-    for item in coll.find({},{'_id': 0}):
-        return_list.append(item)
+    if not tags:
+        for item in coll.find({},{'_id': 0}):
+            results_dict[item['url']].extend(item['tags'])
 
-    return return_list
+    else:
+        for item in coll.find({'tags': {'$all': tags}}, {'_id': 0}):
+            results_dict[item['url']].extend(item['tags'])
+
+    return [{'url': url, 'tags': list(set(tags))} for url, tags in dict(results_dict).iteritems()]
+
 
 
 def store(url, tags):
+    """Store url and tags."""
     coll = get_mongo_collection()
 
     new_item = {"url": url,

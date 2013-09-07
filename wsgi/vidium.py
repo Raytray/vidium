@@ -5,9 +5,11 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+
 @app.route('/api/retrieve/')
 def api_retrieve():
-    return jsonify({'vids': datastore.retrieve()})
+    tags = request.args.getlist('tags')
+    return jsonify({'vids': datastore.retrieve(tags=tags)})
 
 
 @app.route('/api/store/')
