@@ -27,42 +27,54 @@ def get_mongo_collection():
         coll = db['user_data']
         db.authenticate("admin", mongo_pass)
 
-        coll.ensure_index([('url', ASCENDING),
-                           ('tags', ASCENDING)])
+        coll.ensure_index([('_id', ASCENDING),
+                           ('vids.tags', ASCENDING)])
+
         the_collection = coll
 
     return the_collection
 
 
-def retrieve(tags=None):
+def retrieve(token, tags=None):
     """Get all stored videos with tags"""
     coll = get_mongo_collection()
 
-    results_dict = defaultdict(list)
+    results_list = []
 
-    if not tags:
-        for item in coll.find({},{'_id': 0}):
-            results_dict[item['url']].extend(item['tags'])
+    user_data = coll.find_one({'_id': token},
+                              {'_id': 0})
+
+    if not user_data:
+        return []
+
+    elif not tags:
+        for vid in user_data['vids']:
+            results_list = user_data['vids']
 
     else:
-        for item in coll.find({'tags': {'$all': tags}}, {'_id': 0}):
-            results_dict[item['url']].extend(item['tags'])
+        for vid in user_data['vids']:
+            if all(tag in vid['tags'] for tag in tags):
+                results_list.append(vid)
 
-    return [{'url': url, 'tags': list(set(tags))} for url, tags in dict(results_dict).iteritems()]
+    return results_list
 
 
-
-def store(url, tags):
+def store(token, url, tags):
     """Store url and tags."""
     coll = get_mongo_collection()
 
-    new_item = {"url": url,
-                 "tags": tags}
-
-    old_item = coll.find_one({"url":url})
-    if old_item and old_item['tags'] != new_item:
-        old_item['tags'] = tags
+    old_item = coll.find_one({'_id': token})
+    if old_item:
+        for video in old_item['vids']:
+            if video['url'] == url:
+                video['tags'] = tags
+                return coll.save(old_item)
+        old_item['vids'].append({'url': url, 'tags': tags})
         return coll.save(old_item)
 
     else:
+        new_item = {'_id': token,
+                    'vids': [{'url': url,
+                              'tags': tags}]
+                    }
         return coll.insert(new_item)
