@@ -1,5 +1,6 @@
 import pymongo
 import os
+import pafy
 
 from collections import defaultdict
 
@@ -39,7 +40,7 @@ def get_user_data(token):
     coll = get_mongo_collection()
     user_data = coll.find_one({'_id': token})
     if not user_data:
-        return "User not found"
+        return None
     else:
         return user_data
 
@@ -48,6 +49,9 @@ def delete(token, url):
     """Delete given url, returns True if sucessful"""
     coll = get_mongo_collection()
     user_data = get_user_data(token)
+
+    if not user_data:
+        return "User not Found"
 
     new_vid_list = []
     delete = False
@@ -70,6 +74,8 @@ def retrieve(token, tags=None):
     results_list = []
 
     user_data = get_user_data(token)
+    if not user_data:
+        return "User not found"
 
     if not tags:
         for vid in user_data['vids']:
@@ -86,6 +92,7 @@ def retrieve(token, tags=None):
 def store(token, url, tags):
     """Store url and tags."""
     coll = get_mongo_collection()
+
     old_item = get_user_data(token)
 
     if old_item:
@@ -97,8 +104,12 @@ def store(token, url, tags):
         return coll.save(old_item)
 
     else:
+        video = pafy.Pafy(url)
         new_item = {'_id': token,
                     'vids': [{'url': url,
-                              'tags': tags}]
+                              'tags': tags,
+                              'title': video.title,
+                              'thumb_url': video.thumb,
+                              'duration': video.duration}]
                     }
         return coll.insert(new_item)

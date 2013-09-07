@@ -3,3 +3,4 @@ MarkupSafe
 ipython
 pymongo>=2.6.2
 tldextract
+Pafy
