@@ -86,7 +86,7 @@ def retrieve(token, tags=None):
             if all(tag in vid['tags'] for tag in tags):
                 results_list.append(vid)
 
-    return results_list
+    return results_list[::-1]
 
 
 def store(token, url, tags):
