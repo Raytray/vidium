@@ -16,9 +16,8 @@ from pymongo import MongoClient, ASCENDING
 def get_mongo_collection():
     """Inits and returns global the_connection if not
     initialized with default collection."""
+    global the_collection
     if not the_collection:
-        global the_collection
-
         if host:
             mongo = MongoClient(host, int(port))
         else:
@@ -60,4 +59,10 @@ def store(url, tags):
     new_item = {"url": url,
                  "tags": tags}
 
-    return coll.insert(new_item)
+    old_item = coll.find_one({"url":url})
+    if old_item and old_item['tags'] != new_item:
+        old_item['tags'] = tags
+        return coll.save(old_item)
+
+    else:
+        return coll.insert(new_item)
