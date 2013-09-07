@@ -18,12 +18,33 @@ function onClickHandler(info, tab) {
 		chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
 			var tok = JSON.stringify(token);
 			console.log(tok);
-			var getURL = "http://vidium-raytray.rhcloud.com/api/store/?token="+tok+"&url="+myURL;
-			alert(getURL);
-			var xmlHttp = null;
-			xmlHttp = new XMLHttpRequest();
-			xmlHttp.open( "GET", getURL, false );
-			xmlHttp.send( null );
+			//STUFF
+			
+			var userURL = "https://www.googleapis.com/oauth2/v1/tokeninfo?access_token="+tok;
+			var userHttp = null;
+			userHttp = new XMLHttpRequest();
+
+			userHttp.onreadystatechange = function () {
+				if(userHttp.readyState==4){
+					//alert(userHttp.responseText);
+					var userRes = JSON.parse(userHttp.responseText);
+					var userId = userRes.user_id;
+					//alert(userId);
+				
+					var getURL = "http://vidium-raytray.rhcloud.com/api/store/?token="+userId+"&url="+myURL;
+					alert(getURL);
+					var xmlHttp = null;
+					xmlHttp = new XMLHttpRequest();
+					xmlHttp.open( "GET", getURL, false );
+					xmlHttp.send( null );
+				
+				}
+			}
+			userHttp.open( "GET", userURL, true );
+			userHttp.send( null );
+			
+			//STUFF
+			
 			
 		});
 	});

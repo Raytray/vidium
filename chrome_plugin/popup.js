@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function(){
         tok = JSON.stringify(token);
         //document.getElementById("result_box").innerHTML="syntax correct";
         console.log(tok);
-        var getURL = "https://vidium-raytray.rhcloud.com/api/retrieve/?token="+tok;
+        var getURL = "https://vidium-raytray.rhcloud.com/api/retrieve/?token=106598221661789754226";
         var xmlHttp = null;
         xmlHttp = new XMLHttpRequest();
 
