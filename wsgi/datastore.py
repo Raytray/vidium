@@ -93,28 +93,32 @@ def store(token, url, tags):
 
     old_item = get_user_data(token)
 
+    video_obj = pafy.Pafy(url)
+    if hasattr(video_obj, 'bigthumbhd'):
+        thumb = video_obj.bigthumbhd
+    else:
+        thumb = video_obj.thumb
+
     if old_item:
         for video in old_item['vids']:
             if video['url'] == url:
                 video['tags'] = tags
                 return coll.save(old_item)
 
-        video = pafy.Pafy(url)
         old_item['vids'].append({'url': url,
                                  'tags': tags,
-                                 'title': video.title,
-                                 'thumb_url': video.bigthumbhd,
-                                 'duration': video.duration,
-                                 'query_terms': tags.append(video.title.split(" "))})
+                                 'title': video_obj.title,
+                                 'thumb_url': thumb,
+                                 'duration': video_obj.duration,
+                                 'query_terms': tags.append(video_obj.title.split(" "))})
         return coll.save(old_item)
 
     else:
-        video = pafy.Pafy(url)
         new_item = {'_id': token,
                     'vids': [{'url': url,
                               'tags': tags,
-                              'title': video.title,
-                              'thumb_url': video.bigthumbhd,
-                              'duration': video.duration}]
+                              'title': video_obj.title,
+                              'thumb_url': thumb,
+                              'duration': video_obj.duration}]
                     }
         return coll.insert(new_item)
