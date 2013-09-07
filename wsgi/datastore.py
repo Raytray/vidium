@@ -103,7 +103,7 @@ def store(token, url, tags):
         old_item['vids'].append({'url': url,
                                  'tags': tags,
                                  'title': video.title,
-                                 'thumb_url': video.thumb,
+                                 'thumb_url': video.bigthumbhd,
                                  'duration': video.duration,
                                  'query_terms': tags.append(video.title.split(" "))})
         return coll.save(old_item)
@@ -114,7 +114,7 @@ def store(token, url, tags):
                     'vids': [{'url': url,
                               'tags': tags,
                               'title': video.title,
-                              'thumb_url': video.thumb,
+                              'thumb_url': video.bigthumbhd,
                               'duration': video.duration}]
                     }
         return coll.insert(new_item)
