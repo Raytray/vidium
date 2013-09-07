@@ -19,4 +19,3 @@ except IOError:
     pass
 
 from vidium import app as application
-

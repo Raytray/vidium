@@ -6,22 +6,27 @@ port = os.environ.get('OPENSHIFT_MONGODB_DB_PORT')
 
 mongo_pass = os.environ.get('MONGO_PASS')
 
-from pymongo import MongoClient
+from pymongo import MongoClient, ASCENDING
 
-def mongo_test():
+def get_mongo_collection():
     if host:
         mongo = MongoClient(host, int(port))
     else:
         mongo = MongoClient()
 
     db = mongo['vidium']
-    coll = db['test']
-
+    coll = db['user_data']
     db.authenticate("admin", mongo_pass)
 
-    test_post = {"auth": "ray",
-                 "num": 1}
+    coll.ensure_index([('url', ASCENDING),
+                       ('tags', ASCENDING)])
 
-    coll.insert(test_post)
+    return coll
 
-    return coll.find_one()
+def store(url, tags):
+    coll = get_mongo_collection()
+
+    new_item = {"url": url,
+                 "tags": tags}
+
+    return coll.insert(new_item)
