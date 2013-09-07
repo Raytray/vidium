@@ -10,10 +10,10 @@
 
     "oauth2": {
         "client_id": "164974719380.apps.googleusercontent.com",
-        ""scopes": [
-            "profile"
+        "scopes":[
+            "https://www.googleapis.com/auth/userinfo.profile"
         ]
-    }
+    },
     "icons": {"128":"assets/vidium_icon128.png", "16":"assets/vidium_icon16.png"},
 
     "background": {
