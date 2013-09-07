@@ -106,7 +106,7 @@ def store(token, url, tags):
                               'title': video.title,
                               'thumb_url': video.thumb,
                               'duration': video.duration})
-
+        print old_item
         return coll.save(old_item)
 
     else:
