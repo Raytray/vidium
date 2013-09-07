@@ -57,7 +57,6 @@ def delete(token, url):
     delete = False
 
     for vid in user_data['vids']:
-        print vid
         if vid['url'] not in url:
             new_vid_list.append(vid)
         else:
@@ -78,12 +77,11 @@ def retrieve(token, tags=None):
         return "User not found"
 
     if not tags:
-        for vid in user_data['vids']:
-            results_list = user_data['vids']
+        results_list = user_data['vids']
 
     else:
         for vid in user_data['vids']:
-            if all(tag in vid['tags'] for tag in tags):
+            if all(tag in vid['query_terms'] for tag in tags):
                 results_list.append(vid)
 
     return results_list[::-1]
@@ -103,11 +101,11 @@ def store(token, url, tags):
 
         video = pafy.Pafy(url)
         old_item['vids'].append({'url': url,
-                              'tags': tags,
-                              'title': video.title,
-                              'thumb_url': video.thumb,
-                              'duration': video.duration})
-        print old_item
+                                 'tags': tags,
+                                 'title': video.title,
+                                 'thumb_url': video.thumb,
+                                 'duration': video.duration,
+                                 'query_terms': tags.append(video.title.split(" "))})
         return coll.save(old_item)
 
     else:
