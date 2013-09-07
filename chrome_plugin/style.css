@@ -1,0 +1,481 @@
+/* HTML reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  list-style: none; }
+
+@font-face {
+  font-family: "icomoon";
+  src: url("fonts/icomoon.eot");
+  src: url("fonts/icomoon.eot?#iefix") format("embedded-opentype"), url("fonts/icomoon.woff") format("woff"), url("fonts/icomoon.ttf") format("truetype"), url("fonts/icomoon.svg#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "gotham_blackregular";
+  src: url("fonts/gotham-black-webfont.eot");
+  src: url("fonts/gotham-black-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/gotham-black-webfont.woff") format("woff"), url("fonts/gotham-black-webfont.ttf") format("truetype"), url("fonts/gotham-black-webfont.svg#gotham_blackregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "proxima_nova_ltsemibold";
+  src: url("fonts/proximanova-sbold-webfont.eot");
+  src: url("fonts/proximanova-sbold-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/proximanova-sbold-webfont.woff") format("woff"), url("fonts/proximanova-sbold-webfont.ttf") format("truetype"), url("fonts/proximanova-sbold-webfont.svg#proxima_nova_ltsemibold") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "proximanova-regular-webfont-webfont";
+  src: url("fonts/proximanova-regular-webfont-webfont.eot");
+  src: url("fonts/proximanova-regular-webfont-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/proximanova-regular-webfont-webfont.woff") format("woff"), url("fonts/proximanova-regular-webfont-webfont.ttf") format("truetype"), url("fonts/proximanova-regular-webfont-webfont.svg#proxima_nova_ltsemibold") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+b {
+  font-family: "proxima_nova_ltsemibold"; }
+
+* {
+  margin: 0px; }
+
+html, body {
+  height: 600px;
+  width: 320px;
+  background-color: white;
+  overflow: hidden;
+  font-family: "proximanova-regular-webfont-webfont";
+  font-size: 12px;
+  position: relative;
+  color: #222424;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  line-height: 21px; }
+  html .icon, body .icon {
+    font-family: "icomoon"; }
+
+h1, .stat {
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 5px; }
+
+.red {
+  color: #d82153; }
+
+.clear {
+  position: relative;
+  clear: both; }
+
+.image_stat {
+  border: none !important;
+  color: #d82153 !important; }
+
+#settings_edit {
+  line-height: 35px !important; }
+  #settings_edit .icon {
+    color: #d82153 !important; }
+  #settings_edit #options {
+    margin-top: 25px; }
+
+.default header {
+  color: rgba(0, 0, 0, 0.7);
+  height: 41px;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid #d82153;
+  position: relative; }
+  .default header #logo {
+    position: absolute;
+    left: 0px;
+    top: 1px;
+    cursor: pointer;
+    color: #d82153; }
+    .default header #logo #g {
+      font-family: "gotham_blackregular";
+      font-size: 15px;
+      position: absolute;
+      top: 9px;
+      left: 10px;
+      width: 60px; }
+    .default header #logo .icon {
+      font-size: 29px;
+      position: absolute;
+      top: 4px;
+      left: 7px;
+      display: none; }
+  .default header #tools {
+    position: absolute;
+    right: 0px;
+    display: none; }
+    .default header #tools .tool_box {
+      background-color: rgba(255, 255, 255, 0.2);
+      display: inline-block;
+      margin-left: -2px;
+      -webkit-transition: all 0.25s ease-in-out; }
+      .default header #tools .tool_box .icon {
+        position: relative;
+        padding-top: 11px;
+        padding-bottom: 11px;
+        padding-right: 10px;
+        padding-left: 10px;
+        display: inline-block;
+        font-size: 17px;
+        cursor: pointer; }
+      .default header #tools .tool_box input {
+        background: none;
+        border: none;
+        outline: none;
+        margin-right: 10px;
+        display: none;
+        color: #222424;
+        font-family: "proximanova-regular-webfont-webfont";
+        font-size: 15px;
+        position: relative;
+        top: -2px; }
+    .default header #tools #search_box {
+      width: 37px; }
+      .default header #tools #search_box .icon {
+        font-size: 16px;
+        padding-top: 12px;
+        padding-bottom: 11px;
+        top: -1px; }
+    .default header #tools #menu_box .icon {
+      top: -1px; }
+.default #menu {
+  background-color: #222424;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  height: 0px;
+  -webkit-transition: all 0.35s ease-in-out;
+  -webkit-transform: translate3d(0, 0, 0) translateZ(0); }
+  .default #menu .item {
+    font-family: "proximanova-regular-webfont-webfont";
+    color: white;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    display: block;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 295px;
+    margin: auto;
+    position: relative;
+    cursor: pointer;
+    -webkit-transition: all 0.15s; }
+    .default #menu .item .icon {
+      position: absolute;
+      right: 0px;
+      top: 13px;
+      -webkit-transition: all 0.15s; }
+    .default #menu .item:hover {
+      color: #d82153; }
+      .default #menu .item:hover .icon {
+        color: #d82153; }
+.default #wrapper {
+  height: 560px;
+  width: 100%;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow: 0px -1px 3px rgba(0, 0, 0, 0);
+  -webkit-transition: all 0.15s; }
+  .default #wrapper #content {
+    width: 95%;
+    margin: auto;
+    position: relative;
+    height: auto; }
+  .default #wrapper input {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-family: "proximanova-regular-webfont-webfont";
+    font-size: 13px;
+    color: #808b8b;
+    display: inline-block;
+    outline: none;
+    background: none;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px; }
+  .default #wrapper .box {
+    height: 100px;
+    width: 150px;
+    float: left;
+    display: table;
+    position: relative;
+    overflow: hidden;
+    background-color: #222424;
+    background-image: url(../images/loader.gif);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 3px;
+    opacity: 0;
+    -webkit-transition: all 0.35s; }
+    .default #wrapper .box .animated {
+      width: 150px;
+      height: 100px;
+      position: absolute;
+      z-index: 1;
+      overflow: hidden;
+      cursor: pointer;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: none;
+      -webkit-transform: translate3d(0, 0, 0) translateZ(0); }
+    .default #wrapper .box .static {
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+      position: absolute;
+      display: none; }
+    .default #wrapper .box .info {
+      background-color: rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      display: table;
+      vertical-align: middle;
+      text-align: center;
+      z-index: 10; }
+      .default #wrapper .box .info .links {
+        display: table-cell;
+        vertical-align: middle;
+        width: 100%;
+        height: 100%; }
+      .default #wrapper .box .info .icon {
+        font-family: "icomoon";
+        color: white;
+        display: inline-block;
+        padding: 10px;
+        cursor: pointer; }
+        .default #wrapper .box .info .icon:hover {
+          color: #d82153; }
+      .default #wrapper .box .info input {
+        font-size: 8px;
+        bottom: -30px;
+        position: absolute;
+        width: 150px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        background-color: black;
+        border: none;
+        outline: none;
+        color: white; }
+      .default #wrapper .box .info:hover {
+        opacity: 0.7; }
+  .default #wrapper .button {
+    background-color: white;
+    color: #d82153;
+    font-family: "proximanova-regular-webfont-webfont";
+    letter-spacing: 1px;
+    cursor: pointer;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border: none;
+    border-bottom: 1px solid #d82153;
+    margin-top: 5px;
+    margin-bottom: 5px; }
+    .default #wrapper .button:hover {
+      background-color: #d82153;
+      color: white; }
+
+.menu_open #wrapper {
+  box-shadow: 0px -1px 3px rgba(0, 0, 0, 0.7); }
+.menu_open #menu {
+  height: 169px; }
+
+form {
+  display: inline; }
+
+p {
+  padding-top: 20px; }
+
+a {
+  color: #d82153;
+  text-decoration: none;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px; }
+
+#modal {
+  position: absolute;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 55px;
+  left: 50%;
+  margin-left: -95px;
+  color: white;
+  display: none;
+  border-radius: 15px;
+  width: 85px;
+  text-align: center;
+  z-index: 10000; }
+
+#tag_edit, #settings_edit, #info_edit {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  background-color: white;
+  z-index: 500;
+  text-align: left; }
+  #tag_edit .gif_holder, #settings_edit .gif_holder, #info_edit .gif_holder {
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    background-color: #222424; }
+  #tag_edit #options, #settings_edit #options, #info_edit #options {
+    position: relative;
+    bottom: 0px; }
+  #tag_edit .text, #settings_edit .text, #info_edit .text {
+    background-color: #e7f6fc;
+    color: #222222;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 5px;
+    padding-top: 5px;
+    position: relative;
+    display: inline;
+    width: 221px !important; }
+  #tag_edit .button, #settings_edit .button, #info_edit .button {
+    margin: 0px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid #d82153 !important;
+    position: relative;
+    text-align: left;
+    width: 100%; }
+    #tag_edit .button:before, #settings_edit .button:before, #info_edit .button:before {
+      content: attr(title);
+      position: relative;
+      height: 15px;
+      width: 15px;
+      top: 0px;
+      left: 0px;
+      font-family: "icomoon";
+      margin-right: 10px; }
+  #tag_edit .tag_title, #settings_edit .tag_title, #info_edit .tag_title {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    text-align: left;
+    background-color: #3dafd9;
+    color: white; }
+    #tag_edit .tag_title span, #settings_edit .tag_title span, #info_edit .tag_title span {
+      position: relative;
+      top: 1px;
+      margin-right: 5px; }
+
+#settings_edit, #info_edit {
+  position: relative; }
+  #settings_edit #settings, #settings_edit #stats, #info_edit #settings, #info_edit #stats {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 15px;
+    width: 100%;
+    margin: auto; }
+    #settings_edit #settings #shrink, #settings_edit #stats #shrink, #info_edit #settings #shrink, #info_edit #stats #shrink {
+      width: 25px; }
+
+#info_edit {
+  top: 25px;
+  width: 100%;
+  text-align: center; }
+  #info_edit p {
+    margin: 0px;
+    padding: 0px; }
+  #info_edit a {
+    display: inline; }
+  #info_edit .button {
+    padding: 15px;
+    border-radius: 5px; }
+    #info_edit .button .red {
+      color: white; }
+
+.scrollbar-measure {
+  width: 100px;
+  height: 100px;
+  overflow: scroll;
+  position: absolute;
+  top: -9999px; }
+
+#oh_no {
+  line-height: 35px;
+  color: #222424;
+  font-size: 25px;
+  font-family: "gotham_blackregular";
+  width: 100%;
+  text-align: center;
+  padding-top: 55px; }
+
+.command {
+  width: 75px;
+  padding-left: 5px;
+  text-align: left;
+  display: inline-block;
+  margin-top: 10px; }
+
+#overlay_update {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 99999;
+  text-align: left;
+  text-color: white;
+  padding-top: 25px;
+  display: none; }
+  #overlay_update h1 {
+    font-weight: normal;
+    font-size: 15px;
+    font-family: "gotham_blackregular";
+    color: #d82153;
+    padding-right: 25px;
+    padding-left: 25px; }
+  #overlay_update p {
+    line-height: 21px;
+    color: white;
+    font-size: 13px;
+    padding-right: 25px;
+    padding-left: 25px; }
+    #overlay_update p a {
+      display: inline; }
+    #overlay_update p button {
+      border: none;
+      outline: none;
+      background: none;
+      color: white;
+      margin: 0px !important;
+      padding-top: 10px !important;
+      padding-bottom: 10px !important;
+      border-bottom: 1px solid #d82153 !important;
+      position: relative;
+      text-align: left;
+      width: 100%; }
+      #overlay_update p button:before {
+        content: attr(title);
+        position: relative;
+        height: 15px;
+        width: 15px;
+        top: 0px;
+        left: 0px;
+        font-family: "icomoon";
+        margin-right: 10px; }
+
+#signin, #signup {
+  display: none; }
