@@ -1,0 +1,11 @@
+{
+    "manifest_version": 2,
+    "name": "Vimium",
+
+    "default_locale": "en",
+    "description": "A plugin that saves and organizes links to videos."
+
+    "background": {
+	
+    };
+}
