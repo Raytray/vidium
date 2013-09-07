@@ -13,7 +13,7 @@ supported_services = ['vimeo', 'youtube']
 @app.route('/api/retrieve/')
 def api_retrieve():
     token = request.args.get('token')
-    if token is None:
+    if not token:
         return "Need valid google oauth token"
 
     tags = request.args.getlist('tags')
@@ -23,12 +23,12 @@ def api_retrieve():
 @app.route('/api/store/')
 def api_store():
     token = request.args.get('token')
-    if token is None:
+    if not token:
         return "Need valid google oauth token"
 
     url = request.args.get('url')
     tags = request.args.getlist('tags')
-    if url is None:
+    if not url:
         return "need url parameter"
     elif tldextract.extract(url).domain not in supported_services:
         return "serivce has to be from one of these {}".format(
@@ -40,6 +40,19 @@ def api_store():
         return "Thanks!"
     else:
         return "Something went wrong."
+
+
+@app.route('/api/delete/')
+def api_delete():
+    token = request.args.get('token')
+    if not token:
+        return "Need valid google oauth token"
+
+    url = request.args.get('url')
+
+    if not url:
+        return "need url parameter"
+    return str(datastore.delete(token, url))
 
 
 @app.route("/")

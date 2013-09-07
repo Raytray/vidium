@@ -27,27 +27,51 @@ def get_mongo_collection():
         coll = db['user_data']
         db.authenticate("admin", mongo_pass)
 
-        coll.ensure_index([('_id', ASCENDING),
-                           ('vids.tags', ASCENDING)])
+        coll.ensure_index('_id', ASCENDING)
 
         the_collection = coll
 
     return the_collection
 
 
+def get_user_data(token):
+    """Returns user data if token is found"""
+    coll = get_mongo_collection()
+    user_data = coll.find_one({'_id': token})
+    if not user_data:
+        return "User not found"
+    else:
+        return user_data
+
+
+def delete(token, url):
+    """Delete given url, returns True if sucessful"""
+    coll = get_mongo_collection()
+    user_data = get_user_data(token)
+
+    new_vid_list = []
+    delete = False
+
+    for vid in user_data['vids']:
+        print vid
+        if vid['url'] not in url:
+            new_vid_list.append(vid)
+        else:
+            delete = True
+
+    user_data['vids'] = new_vid_list
+    coll.save(user_data)
+    return delete
+
+
 def retrieve(token, tags=None):
     """Get all stored videos with tags"""
     coll = get_mongo_collection()
-
     results_list = []
 
-    user_data = coll.find_one({'_id': token},
-                              {'_id': 0})
+    user_data = get_user_data(token)
 
-    if not user_data:
-        return []
-
-    elif not tags:
+    if not tags:
         for vid in user_data['vids']:
             results_list = user_data['vids']
 
@@ -62,8 +86,8 @@ def retrieve(token, tags=None):
 def store(token, url, tags):
     """Store url and tags."""
     coll = get_mongo_collection()
+    old_item = get_user_data(token)
 
-    old_item = coll.find_one({'_id': token})
     if old_item:
         for video in old_item['vids']:
             if video['url'] == url:
