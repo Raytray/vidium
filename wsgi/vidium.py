@@ -7,7 +7,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-supported_services = ['vimeo', 'youtube']
+supported_services = ['youtube']
 
 
 @app.route('/api/retrieve/')
