@@ -100,7 +100,13 @@ def store(token, url, tags):
             if video['url'] == url:
                 video['tags'] = tags
                 return coll.save(old_item)
-        old_item['vids'].append({'url': url, 'tags': tags})
+
+        old_item['vids'].append({'url': url,
+                              'tags': tags,
+                              'title': video.title,
+                              'thumb_url': video.thumb,
+                              'duration': video.duration})
+
         return coll.save(old_item)
 
     else:
