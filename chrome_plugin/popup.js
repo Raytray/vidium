@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		}
 		userHttp.open( "GET", userURL, true );
 		userHttp.send( null );
-			
+		
     });
 
 });

@@ -3,7 +3,7 @@
     "name": "Vidium",
     "version": "0.0.0.1",
     "omnibox": {
-         "keyword": "Vidium"
+        "keyword": "Vidium"
     },
     "description": "A plugin that saves and organizes links to videos.",
     "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCRrE1R0pxU31PkZvuSksNRBG8/4xsPkWwNuQ91oRWx0eh7Qul1PeGH8yKpkL4evJ10ir1H69p1hYznep6+f7sPX2evg1i4vtk5iSeI1Jzj8IbwVoC5joeNbhogffsBnCai9UiyZ7F0R31IV0G1Ws9s3Oq/xaxEsCBoPO7xNQIQFQIDAQAB",
@@ -18,7 +18,7 @@
 
     "background": {
         "scripts": ["eventPage.js"],
-        "persistent": false	
+        "persistent": false
     },
     "permissions":[
         "contextMenus",
@@ -26,10 +26,10 @@
         "tabs",
         "https://*.dropbox.com/",
         "*://vidium-raytray.rhcloud.com/*"
-        ],
+    ],
     "content_security_policy": "script-src 'self' https://*.dropbox.com; object-src 'self'",
     "browser_action": {
-        "default_icon": {                    
+        "default_icon": {
             "19": "assets/vidium_icon16.png"
         },
         "default_title": "Vidium",
