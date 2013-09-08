@@ -105,8 +105,7 @@ def store(token, url, tags):
                                  'tags': tags,
                                  'title': video_obj.title,
                                  'thumb_url': thumb,
-                                 'duration': video_obj.duration,
-                                 'query_terms': tags.append(video_obj.title.split(" "))})
+                                 'duration': video_obj.duration})
         return coll.save(old_item)
 
     else:
