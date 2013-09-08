@@ -101,6 +101,11 @@ def store(token, url, tags):
 
     tags.append(video_obj.title.split(" "))
     if old_item:
+        for video in old_item['vids']:
+          if video['url'] == url:
+                video['tags'] = tags
+                return coll.save(old_item)
+
         old_item['vids'].append({'url': url,
                                  'tags': tags,
                                  'title': video_obj.title,
