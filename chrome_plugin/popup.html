@@ -3,13 +3,14 @@
     <head>
         <title> Vidium Popup </title>
         <link href="style.css" rel="stylesheet" type="text/css">
+        <script src="popup.js"></script>
     </head>
 
     <body overflow="scroll">
         <div id="container">
             <script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="tme2t72ugpcs6zm"></script>
 
-            <form id="search-box" action="search">
+            <form id="search-box" onsubmit="return search()">
                 <input type="text" name="q" size="32" />
                 <input type="submit" name="sa" value="Search" />
             </form>

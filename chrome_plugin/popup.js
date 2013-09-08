@@ -51,7 +51,8 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
 });
-function search(tag){
+function search(){
+    var tag = document.getElementById("search-box").innerHTML;
     var tags = tag.split(" ");
     if (tags.length == 0) {
         return 0;
