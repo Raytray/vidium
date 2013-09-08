@@ -52,31 +52,51 @@ document.addEventListener('DOMContentLoaded', function(){
 
 });
 function search(){
-    var tag = document.getElementById("search-box").innerHTML;
-    var tags = tag.split(" ");
-    if (tags.length == 0) {
-        return 0;
-    }
-    var tag_string = "&tags=" + tags.join("&tags=");
-    var getURL = "http://vidium-raytray.rhcloud.com/api/retrieve/?token="+userId+"&url="+myURL+tag_string;
-    var xmlHttp = null;
-    xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", getURL, false );
-    xmlHttp.onreadystatechange = function () {
-        var res = JSON.parse(xmlHttp.responseText);
-        if(res.vids == "User not found"){
-            document.getElementById("result_box").innerHTML = "ADD SOME LINKS!";
-        }
-        else{
-            console.log(JSON.stringify(res));
-            console.log(res.vids.length);
-            document.getElementById("result_box").innerHTML='<table>';
+	alert("hello");
+	chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
+        tok = JSON.stringify(token);
+		alert(tok);
+		var tag = document.getElementById("search-box").innerHTML;
+		var tags = tag.split(" ");
+		if (tags.length == 0) {
+			return 0;
+		}
+		var tag_string = "&tags=" + tags.join("&tags=");
+		var userURL = "https://www.googleapis.com/oauth2/v1/tokeninfo?access_token="+tok;
+		//alert(userURL);
+		var userHttp = null;
+		userHttp = new XMLHttpRequest();
 
-            for(var i=0; i<res.vids.length; i++){ target="_blank"
-                document.getElementById("result_box").innerHTML+='<tr><td><a href="' + res.vids[i].url + '" target="_blank"><img src="' + res.vids[i].thumb_url + '" width="300"></a></td></tr>';
-            }
-            document.getElementById("result_box").innerHTML+='</table>';
-        }
-    }
-    xmlHttp.send( null );
+		userHttp.onreadystatechange = function () {
+			if(userHttp.readyState==4){
+				var userRes = JSON.parse(userHttp.responseText);
+				userId = userRes.user_id;
+				var getURL = "http://vidium-raytray.rhcloud.com/api/retrieve/?token="+userId+"&url="+myURL+tag_string;
+				var xmlHttp = null;
+				xmlHttp = new XMLHttpRequest();
+				xmlHttp.open( "GET", getURL, false );
+				xmlHttp.onreadystatechange = function () {
+					var res = JSON.parse(xmlHttp.responseText);
+					if(res.vids == "User not found"){
+						document.getElementById("result_box").innerHTML = "ADD SOME LINKS!";
+					}
+					else{
+						console.log(JSON.stringify(res));
+						console.log(res.vids.length);
+						document.getElementById("result_box").innerHTML='<table>';
+
+						for(var i=0; i<res.vids.length; i++){ target="_blank"
+						document.getElementById("result_box").innerHTML+='<tr><td><a href="' + res.vids[i].url + '" target="_blank"><img src="' + res.vids[i].thumb_url + '" width="300"></a></td></tr>';
+					}
+					document.getElementById("result_box").innerHTML+='</table>';
+				}
+			}
+			xmlHttp.send( null );
+			}
+			userHttp.open( "GET", userURL, true );
+			userHttp.send( null );
+
+		}
+	});
+	return false;
 }
