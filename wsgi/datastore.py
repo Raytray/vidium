@@ -3,6 +3,7 @@ import os
 import pafy
 
 from collections import defaultdict
+from pymongo import MongoClient, ASCENDING
 
 host = os.environ.get('OPENSHIFT_MONGODB_DB_HOST')
 port = os.environ.get('OPENSHIFT_MONGODB_DB_PORT')
@@ -10,8 +11,6 @@ port = os.environ.get('OPENSHIFT_MONGODB_DB_PORT')
 mongo_pass = os.environ.get('MONGO_PASS')
 
 the_collection = None
-
-from pymongo import MongoClient, ASCENDING
 
 
 def get_mongo_collection():
@@ -94,6 +93,7 @@ def store(token, url, tags):
     old_item = get_user_data(token)
 
     video_obj = pafy.Pafy(url)
+
     if hasattr(video_obj, 'bigthumbhd'):
         thumb = video_obj.bigthumbhd
     else:
@@ -110,7 +110,8 @@ def store(token, url, tags):
                                  'tags': tags,
                                  'title': video_obj.title,
                                  'thumb_url': thumb,
-                                 'duration': video_obj.duration})
+                                 'duration': video_obj.duration
+                                 })
         return coll.save(old_item)
 
     else:
