@@ -3,7 +3,7 @@ import tldextract
 import datastore
 
 from collections import defaultdict
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
@@ -58,6 +58,11 @@ def api_delete():
 @app.route("/")
 def index():
     return "Nothing to see here"
+
+
+@app.route("/dropbox")
+def dropbox_export():
+    return render_template('index.html')
 
 
 if __name__ == "__main__":
