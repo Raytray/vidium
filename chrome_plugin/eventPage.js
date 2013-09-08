@@ -30,14 +30,26 @@ function onClickHandler(info, tab) {
 					var userRes = JSON.parse(userHttp.responseText);
 					var userId = userRes.user_id;
 					//alert(userId);
-				
-					var getURL = "http://vidium-raytray.rhcloud.com/api/store/?token="+userId+"&url="+myURL;
+				    var tags = prompt("Enter any tags separated by commas. (tag1, tag2)");
+				    if (tags.length != 0) {
+					tags = tags.split(", ")
+					var tag_string = "&tags=" + tags.join("&tags=");
+					var getURL = "http://vidium-raytray.rhcloud.com/api/store/?token="+userId+"&url="+myURL+tag_string;
 					alert(getURL);
 					var xmlHttp = null;
 					xmlHttp = new XMLHttpRequest();
 					xmlHttp.open( "GET", getURL, false );
 					xmlHttp.send( null );
-				
+				    }
+				    else {
+					var tag_string = "";
+					var getURL = "http://vidium-raytray.rhcloud.com/api/store/?token="+userId+"&url="+myURL+tag_string;
+					alert(getURL);
+					var xmlHttp = null;
+					xmlHttp = new XMLHttpRequest();
+					xmlHttp.open( "GET", getURL, false );
+					xmlHttp.send( null );
+				    }
 				}
 			}
 			userHttp.open( "GET", userURL, true );
@@ -62,7 +74,7 @@ chrome.runtime.onInstalled.addListener(function() {
     var title = "Add to Vidium";
     var id = chrome.contextMenus.create({"title": title, "contexts":[context],
                                          "id": "context" + context, "documentUrlPatterns":["*://www.youtube.com/*"]
-										 });
+					});
     console.log("'" + context + "' item:" + id);
   }
   
