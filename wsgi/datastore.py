@@ -81,7 +81,7 @@ def retrieve(token, tags=None):
 
     else:
         for vid in user_data['vids']:
-            if all(tag in vid['query_terms'] for tag in tags):
+            if all(tag in vid['tags'] for tag in tags):
                 results_list.append(vid)
 
     return results_list[::-1]
@@ -99,12 +99,8 @@ def store(token, url, tags):
     else:
         thumb = video_obj.thumb
 
+    tags.append(video_obj.title.split(" "))
     if old_item:
-        for video in old_item['vids']:
-            if video['url'] == url:
-                video['tags'] = tags
-                return coll.save(old_item)
-
         old_item['vids'].append({'url': url,
                                  'tags': tags,
                                  'title': video_obj.title,
@@ -120,7 +116,6 @@ def store(token, url, tags):
                               'title': video_obj.title,
                               'thumb_url': thumb,
                               'duration': video_obj.duration,
-                              'query_terms': tags.append(video_obj.title.split(" "))
                               }]
                     }
-        return coll.insert(new_item)
+    return coll.insert(new_item)

@@ -35,7 +35,7 @@ function onClickHandler(info, tab) {
                         tags = tags.split(", ")
                         var tag_string = "&tags=" + tags.join("&tags=");
                         var getURL = "http://vidium-raytray.rhcloud.com/api/store/?token="+userId+"&url="+myURL+tag_string;
-                        alert(getURL);
+                        //alert(getURL);
                         var xmlHttp = null;
                         xmlHttp = new XMLHttpRequest();
                         xmlHttp.open( "GET", getURL, false );
