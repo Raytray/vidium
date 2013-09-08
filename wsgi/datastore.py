@@ -119,6 +119,8 @@ def store(token, url, tags):
                               'tags': tags,
                               'title': video_obj.title,
                               'thumb_url': thumb,
-                              'duration': video_obj.duration}]
+                              'duration': video_obj.duration,
+                              'query_terms': tags.append(video_obj.title.split(" "))
+                              }]
                     }
         return coll.insert(new_item)
