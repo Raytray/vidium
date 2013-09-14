@@ -2,7 +2,6 @@ import tldextract
 
 import datastore
 
-from collections import defaultdict
 from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)

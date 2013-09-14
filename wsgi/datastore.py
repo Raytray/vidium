@@ -2,7 +2,6 @@ import pymongo
 import os
 import pafy
 
-from collections import defaultdict
 from pymongo import MongoClient, ASCENDING
 
 host = os.environ.get('OPENSHIFT_MONGODB_DB_HOST')
